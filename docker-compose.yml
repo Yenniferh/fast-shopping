@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  db:
+    image: 'mysql:latest'
+    environment:
+      MYSQL_ROOT_PASSWORD: U44hJ3KzXCK4
+    ports:
+      - "13306:3306"
+    security_opt:
+      - seccomp:unconfined
+    # stdin_open: true
+    # tty: true
+
+  api:
+    build: ./back
+    volumes:
+      - ./back/app:/app
+    environment:
+      DB_HOST: host.docker.internal
+      DB_USER: root
+      DB_PASSWORD: U44hJ3KzXCK4
+      DB_DATABASE: test
+      DB_PORT: 13306
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      - "host.docker.internal:192.168.1.2"
