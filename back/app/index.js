@@ -1,7 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors')
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 const port = 8080;
 app.listen(port, () =>{
@@ -29,6 +31,17 @@ app.get("/products", async (req, res) => {
       res.json({ status: "error", message: err });
     }
     res.json(data);
+  });
+});
+
+
+app.get("/products/:id_product", async (req, res) => {
+  const query = "SELECT * FROM products where id_product = ?";
+  pool.query(query, [req.params.id_product], (err, data) => {
+    if(err) {
+      res.json({ status: "error", message: err });
+    }
+    res.json(data[0]);
   });
 });
 
@@ -85,5 +98,16 @@ app.post("/items", async (req, res) => {
       res.json({ status: "error", message: error.message });
     }
     res.json({ status: "ok", id: result["insertId"]});
+  });
+});
+
+
+app.get("/categories/:id_category", async (req, res) => {
+  const query = "SELECT * FROM categories where id_category = ?";
+  pool.query(query, [req.params.id_category], (err, data) => {
+    if(err) {
+      res.json({ status: "error", message: err });
+    }
+    res.json(data[0]);
   });
 });
