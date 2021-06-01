@@ -11,7 +11,6 @@ export default function Home() {
 
   return (
     <div>
-      Home
       {console.log(products)}
     </div>
   )
