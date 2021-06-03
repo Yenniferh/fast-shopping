@@ -1,16 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { GetProducts } from '../../Services/Api';
 
-const initialState = [
-  {"id_product":2,"name":"Galaxy Note 10+","description":"Amazing smartphone","price":"659","stock":12,"id_category":1, "category": "Electronic"},
-  {"id_product":3,"name":"LG Monitor 15.6 inch","description":"Full HD","price":"236","stock":15,"id_category":1, "category": "Electronic"}
-]
+const initialState = {
+  products: [],
+  status: 'idle',
+  otroStatus: 'idle',
+  error: null,
+};
+
+export const selectAllProducts = (state) => state.products.products;
+export const selectProduct = (state, productId) =>
+  state.products.products.find((product) => product.id_product === productId);
+
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async () => {
+    const res = await GetProducts();
+    return res.products;
+  }
+);
 
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {
+  reducers: {},
+  extraReducers: {
+    [fetchProducts.pending]: (state, action) => {
+      state.status = 'loading';
+    },
+    [fetchProducts.fulfilled]: (state, action) => {
+      state.status = 'succeeded';
+      state.products = state.products.concat(action.payload);
+    },
+    [fetchProducts.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    },
+  },
+});
 
-  }
-})
-
-export default productsSlice.reducer
+export default productsSlice.reducer;

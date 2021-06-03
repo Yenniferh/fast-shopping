@@ -27,20 +27,10 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id_category` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `description` tinytext,
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categories`
---
-
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (00001,'Electronic','Electronic devices'),(00002,'Office','Office supplies'),(00003,'New','New products');
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `items`
@@ -64,16 +54,6 @@ CREATE TABLE `items` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `items`
---
-
-LOCK TABLES `items` WRITE;
-/*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (000000001,3,1,235.99,1),(000000002,3,1,235.99,8),(000000003,3,1,235.99,9),(000000004,2,1,658.99,9);
-/*!40000 ALTER TABLE `items` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `orders`
 --
 
@@ -92,14 +72,23 @@ CREATE TABLE `orders` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `orders`
+-- Table structure for table `product_categories`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (000000001,'2021-05-29',1,235.99),(000000002,'2021-05-30',1,235.99),(000000003,'2021-05-30',1,658.99),(000000004,'2021-05-30',1,658.99),(000000005,'2021-05-30',1,658.99),(000000006,'2021-05-30',1,658.99),(000000007,'2021-05-30',1,658.99),(000000008,'2021-05-30',1,658.99),(000000009,'2021-05-30',1,894.98);
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `product_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_categories` (
+  `id_product_cat` int NOT NULL AUTO_INCREMENT,
+  `id_prod` int unsigned NOT NULL,
+  `id_cat` int unsigned NOT NULL,
+  PRIMARY KEY (`id_product_cat`),
+  KEY `id_prod_idx` (`id_prod`),
+  KEY `id_cat_idx` (`id_cat`),
+  CONSTRAINT `id_cat` FOREIGN KEY (`id_cat`) REFERENCES `categories` (`id_category`),
+  CONSTRAINT `id_prod` FOREIGN KEY (`id_prod`) REFERENCES `products` (`id_product`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `products`
@@ -111,25 +100,12 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id_product` int(9) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `price` decimal(10,0) NOT NULL,
+  `description` tinytext,
+  `price` double NOT NULL,
   `stock` int NOT NULL,
-  `id_category` int unsigned NOT NULL,
-  PRIMARY KEY (`id_product`),
-  KEY `id_category_idx` (`id_category`),
-  CONSTRAINT `id_category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`)
+  PRIMARY KEY (`id_product`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products`
---
-
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (000000002,'Galaxy Note 10+','Amazing smartphone',659,12,1),(000000003,'LG Monitor 15.6 inch','Full HD',236,15,1);
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -149,15 +125,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jess Mendoza','Calle 72','3555555','jess@me.com');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -168,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-31  1:29:19
+-- Dump completed on 2021-06-02 19:05:44

@@ -2,8 +2,6 @@ version: '3.4'
 
 services:
   db:
-    # build:
-    #   context: ./db/
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     volumes:
@@ -12,15 +10,12 @@ services:
       MYSQL_ROOT_PASSWORD: U44hJ3KzXCK4
       MYSQL_HOST: host.docker.internal
     ports:
-      - "13306:3306"
+      - '13306:3306'
     security_opt:
       - seccomp:unconfined
     restart: always
-    # stdin_open: true
-    # tty: true
-    # entrypoint: bash
-    # extra_hosts:
-    #   - "host.docker.internal:192.168.1.2"
+    extra_hosts:
+      - 'host.docker.internal:192.168.1.2'
 
   api:
     build:
@@ -33,16 +28,16 @@ services:
       DB_PASSWORD: U44hJ3KzXCK4
       DB_DATABASE: shop
       DB_PORT: 13306
-      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_USEPOLLING: 'true'
     stdin_open: true
     tty: true
     entrypoint: bash
     ports:
-      - "8081:8080"
+      - '8081:8080'
     depends_on:
       - db
     extra_hosts:
-      - "host.docker.internal:192.168.1.2"
+      - 'host.docker.internal:192.168.1.2'
 
   front:
     build:
@@ -52,13 +47,13 @@ services:
     environment:
       API_HOST: host.docker.internal
       API_PORT: 8081
-      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_USEPOLLING: 'true'
     stdin_open: true
     tty: true
     entrypoint: bash
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - api
     extra_hosts:
-      - "host.docker.internal:192.168.1.2"
+      - 'host.docker.internal:192.168.1.2'
