@@ -68,10 +68,8 @@ export const ProductsList = () => {
   }
 
   return (
-    <>
-      <section className='w-full sm:flex sm:flex-row sm:justify-center flex-wrap'>
-        {content}
-      </section>
-    </>
+    <section className='w-full sm:flex sm:flex-row sm:justify-center flex-wrap'>
+      {content}
+    </section>
   );
 };
