@@ -2,6 +2,7 @@ import { Navbar } from './components/Navbar';
 import { ProductsList } from './features/products/ProductsList';
 import { OrdersPage } from './features/order/OrderPage';
 import { Thanks } from './components/Thanks';
+import { Paginator } from './components/Paginator';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,7 @@ function App() {
             path='/thanks'
             render={(props) => <Thanks {...props} />}
           ></Route>
+          <Route render={() => <Paginator />} />
           <Redirect to='/' />
         </Switch>
       </div>

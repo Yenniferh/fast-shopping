@@ -38,6 +38,8 @@ app.get('/products/:id_product', async (req, res) => {
   pool.query(query, [req.params.id_product], (error, data) => {
     if (error) {
       res.json({ status: 'error', message: error.message });
+    } else if (!data) {
+      res.json({});
     }
     res.json({ product: data[0] });
   });
@@ -135,6 +137,8 @@ app.get('/categories/:id_category', async (req, res) => {
   pool.query(query, [req.params.id_category], (error, data) => {
     if (error) {
       res.json({ status: 'error', message: error.message });
+    } else if (!data) {
+      res.json({});
     }
     res.json({ status: 'ok', category: data[0] });
   });

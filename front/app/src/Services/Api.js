@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+// const BASE_URL = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 const API = axios.create({
-  baseURL: 'http://192.168.1.2:8081',
+  baseURL: 'http://192.168.1.6:8081',
   timeout: 15000,
   responseType: 'json',
   headers: { 'Content-Type': 'application/json' },

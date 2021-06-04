@@ -33,11 +33,11 @@ Now that the db is ready, it's time to install the project's dependencies
 ### Configure env
 
 1. Go to front/app/
-2. Create an .env file and set its values
+2. Create an .env file and set its values (in `front/app/` you can find an example)
 
 ```text
-API_HOST=localhost
-API_PORT=8081
+REACT_APP_API_HOST=localhost
+REACT_APP_API_PORT=8081
 ```
 
 ### Running
