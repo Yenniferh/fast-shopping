@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className='p-2 md:px-6 lg:px-10'>
+      <div className='p-2 md:px-4 lg:px-10'>
         <Switch>
           <Route exact path='/' render={() => <ProductsList />} />
           <Route path='/cart' render={() => <OrdersPage />}></Route>

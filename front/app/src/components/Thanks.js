@@ -6,9 +6,9 @@ import { resetOrder } from '../features/order/orderSlice';
 export const Thanks = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  dispatch(resetOrder());
 
   const handleClick = () => {
-    dispatch(resetOrder());
     history.push('/');
   };
 
@@ -27,7 +27,7 @@ export const Thanks = (props) => {
             <span className='text-secondary font-normal'>{id_order}</span>. Your
             items will be soon at your door.
           </p>
-          <Button onClick={handleClick} className='w-32 self-center mb-8'>
+          <Button onClick={() => handleClick} className='w-32 self-center mb-8'>
             Start Again
           </Button>
         </>

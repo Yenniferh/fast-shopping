@@ -36,7 +36,6 @@ export const AddOrderForm = (props) => {
   }, [id_order, items, dispatch, isOrderReady]);
 
   if (isOrderReady) {
-    setIsOrderReady(false);
     history.push({
       pathname: '/thanks',
       state: {
