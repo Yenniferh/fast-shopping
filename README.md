@@ -14,6 +14,10 @@
 
 ## How to run
 
+### Prerequisite
+
+- Docker
+
 ### Setup the db
 
 1. Clone this repo
