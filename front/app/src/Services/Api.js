@@ -1,14 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 const API = axios.create({
   baseURL: `http://${process.env["REACT_APP_API_HOST"]}:${process.env["REACT_APP_API_PORT"]}`,
   timeout: 15000,
-  responseType: 'json',
-  headers: { 'Content-Type': 'application/json' },
+  responseType: "json",
+  headers: { "Content-Type": "application/json" },
 });
 
 export async function GetProducts() {
-  return await API.get('/products')
+  console.log(API.defaults.baseURL);
+  return await API.get("/products")
     .then((res) => {
       return res.data;
     })
@@ -28,7 +29,7 @@ export async function GetProductCategories(id_product) {
 }
 
 export async function CreateUser(data) {
-  return await API.post('/users', JSON.stringify(data))
+  return await API.post("/users", JSON.stringify(data))
     .then((res) => {
       return res.data;
     })
@@ -44,7 +45,7 @@ export async function CreateOrder(data) {
       total: total,
     }
   */
-  return await API.post('/orders', JSON.stringify(data))
+  return await API.post("/orders", JSON.stringify(data))
     .then((res) => {
       return res.data;
     })
@@ -62,7 +63,7 @@ export async function AddOrderItem(data) {
       id_order: parseInt(id_order),
     }
   */
-  return await API.post('/items', JSON.stringify(data))
+  return await API.post("/items", JSON.stringify(data))
     .then((res) => {
       return res.data;
     })

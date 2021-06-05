@@ -49,10 +49,11 @@ export const AddOrderForm = (props) => {
     try {
       const { id_user, full_name, address, phone, email } = form;
       await dispatch(postUser({ id_user, full_name, address, phone, email }));
-      await dispatch(postOrder({ id_user, total }));
+      const formattedTotal = Number(total).toFixed(2);
+      await dispatch(postOrder({ id_user, total: formattedTotal }));
       setIsOrderReady(true);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

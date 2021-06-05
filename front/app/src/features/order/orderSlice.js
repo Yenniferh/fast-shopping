@@ -68,7 +68,7 @@ const orderSlice = createSlice({
     calculatesTotal(state, action) {
       let total = 0;
       state.order_items.forEach((element) => {
-        total += parseFloat(element.quantity) * parseFloat(element.price);
+        total += Number(element.quantity) * Number(element.price);
       });
       state.total = total.toFixed(2);
     },

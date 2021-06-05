@@ -29,9 +29,9 @@ services:
       DB_DATABASE: shop
       DB_PORT: 13306
       CHOKIDAR_USEPOLLING: 'true'
-    # stdin_open: true
-    # tty: true
-    # entrypoint: bash
+    stdin_open: true
+    tty: true
+    entrypoint: bash
     ports:
       - '8081:8080'
     depends_on:
@@ -48,9 +48,9 @@ services:
       API_HOST: host.docker.internal
       API_PORT: 8081
       CHOKIDAR_USEPOLLING: 'true'
-    # stdin_open: true
-    # tty: true
-    # entrypoint: bash
+    stdin_open: true
+    tty: true
+    entrypoint: bash
     ports:
       - '3000:3000'
     depends_on:

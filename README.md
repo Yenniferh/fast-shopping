@@ -7,6 +7,9 @@
   - [Installing dependencies](#installing-dependencies)
   - [Configure env](#configure-env)
   - [Running](#running)
+- [Screenshots](#screenshots)
+  - [Desktop version](#desktop-version)
+  - [Mobile version](#mobile-version)
 - [Additional comments](#additional-comments)
 
 ## How to run
@@ -53,6 +56,20 @@ REACT_APP_API_PORT=8081
 2. Run again `docker-compose up --build` (I promise this is the last one 😓)
 
 Now the app is exposed at `http://localhost:3000/`
+
+## Screenshots
+
+### Desktop version
+
+<code>
+  <img src=".github/FastShoppingDesktop.png" width="100%" alt="Design"/> 
+</code>
+
+### Mobile version
+
+<code>
+  <img src=".github/FastShoppingMobile.jpeg" width="70%;" alt="Design"/>
+</code>
 
 ## Additional comments
 

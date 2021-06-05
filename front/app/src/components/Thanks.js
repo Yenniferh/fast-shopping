@@ -1,12 +1,14 @@
 import { useHistory } from "react-router-dom";
 import { Button } from "./Objects";
+import { resetOrder } from "../features/order/orderSlice";
+import { useDispatch } from "react-redux";
 
 export const Thanks = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log("me voy");
-    console.log("ya me fui");
+    dispatch(resetOrder());
     history.push("/");
   };
 
@@ -14,7 +16,6 @@ export const Thanks = (props) => {
   try {
     const { id_order, user_fullname } = props.location.state;
     if (id_order && user_fullname) {
-      console.log("Gracias por comprar");
       content = (
         <>
           <h1 className="text-center text-3xl my-8">
@@ -36,7 +37,6 @@ export const Thanks = (props) => {
       );
     }
   } catch (error) {
-    console.log("Entré");
     content = (
       <h1 className="text-center text-3xl my-8">You do not have orders</h1>
     );
