@@ -68,7 +68,7 @@ Now the app is exposed at `http://localhost:3000/`
 ### Mobile version
 
 <code>
-  <img src=".github/FastShoppingMobile.jpeg" width="70%;" alt="Design"/>
+  <img src=".github/FastShoppingMobile.jpeg" alt="Design"/>
 </code>
 
 ## Additional comments
