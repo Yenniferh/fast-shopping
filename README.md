@@ -3,6 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [How to run](#how-to-run)
+  - [Prerequisite](#prerequisite)
   - [Setup the db](#setup-the-db)
   - [Installing dependencies](#installing-dependencies)
   - [Configure env](#configure-env)
