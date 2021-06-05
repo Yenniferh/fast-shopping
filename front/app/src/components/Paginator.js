@@ -42,10 +42,11 @@ export function Paginator(props) {
   };
 
   const activeStyles =
-    "z-10 bg-indigo-50 border-secondary text-secondary relative inline-flex items-center px-4 py-2 border text-sm font-medium ";
+    "z-10 bg-indigo-50 border-secondary text-secondary relative inline-flex items-center px-4 py-2 border text-sm font-medium focus:outline-none ";
   const unselectedStyles =
-    "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium ";
-
+    "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium focus:outline-none ";
+  const buttonStylesMob =
+    "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none ";
   return (
     <>
       {getPaginatedData().map((product) => (
@@ -59,13 +60,21 @@ export function Paginator(props) {
         <div className="flex-1 flex justify-between sm:hidden">
           <button
             onClick={goToPreviousPage}
-            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            className={
+              currentPage === 1
+                ? `${buttonStylesMob} pointer-events-none bg-gray-200`
+                : buttonStylesMob
+            }
           >
             Previous
           </button>
           <button
             onClick={goToNextPage}
-            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            className={
+              currentPage === pages
+                ? `${buttonStylesMob} pointer-events-none bg-gray-200`
+                : buttonStylesMob
+            }
           >
             Next
           </button>

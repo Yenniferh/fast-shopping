@@ -1,13 +1,13 @@
-import { Link, useHistory } from 'react-router-dom';
-import { Label, Input, Required, Button } from '../../components/Objects';
+import { Link, useHistory } from "react-router-dom";
+import { Label, Input, Required, Button } from "../../components/Objects";
 import {
   postUser,
   postOrder,
   postOrderItem,
   selectIDOrder,
-} from './orderSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+} from "./orderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export const AddOrderForm = (props) => {
   const { form, handleChange, total, items } = props;
@@ -37,7 +37,7 @@ export const AddOrderForm = (props) => {
 
   if (isOrderReady) {
     history.push({
-      pathname: '/thanks',
+      pathname: "/thanks",
       state: {
         id_order: id_order,
         user_fullname: form.full_name,
@@ -58,65 +58,65 @@ export const AddOrderForm = (props) => {
 
   return (
     <>
-      <section className='flex justify-center items-center flex-col w-full md:w-2/3 lg:w-1/2 rounded-sm shadow-sm'>
-        <h2 className='text-xl font-semibold text-gray-700 my-3'>
+      <section className="flex justify-center items-center flex-col w-full md:w-2/3 lg:w-1/2 rounded-sm shadow-sm">
+        <h2 className="text-xl font-semibold text-gray-700 my-3">
           Customer Information
         </h2>
-        <form className='table p-3'>
-          <div className='table-row'>
-            <Label name='full_name'>
+        <form className="table p-3">
+          <div className="table-row">
+            <Label name="full_name">
               Full Name
               <Required />
             </Label>
             <Input
-              name='full_name'
+              name="full_name"
               value={form.full_name}
               onChange={handleChange}
             />
           </div>
-          <div className='table-row'>
-            <Label name='id_user'>
+          <div className="table-row">
+            <Label name="id_user">
               ID
               <Required />
             </Label>
             <Input
-              name='id_user'
+              name="id_user"
               value={form.id_user}
               onChange={handleChange}
             />
           </div>
-          <div className='table-row'>
-            <Label name='address'>
+          <div className="table-row">
+            <Label name="address">
               Address
               <Required />
             </Label>
             <Input
-              name='address'
+              name="address"
               value={form.address}
               onChange={handleChange}
             />
           </div>
-          <div className='table-row'>
-            <Label name='phone'>
+          <div className="table-row">
+            <Label name="phone">
               Phone Number
               <Required />
             </Label>
-            <Input name='phone' value={form.phone} onChange={handleChange} />
+            <Input name="phone" value={form.phone} onChange={handleChange} />
           </div>
-          <div className='table-row'>
-            <Label name='email'>
+          <div className="table-row">
+            <Label name="email">
               Email
               <Required />
             </Label>
-            <Input name='email' value={form.email} onChange={handleChange} />
+            <Input name="email" value={form.email} onChange={handleChange} />
           </div>
         </form>
       </section>
       <div>
-        <Button className='my-4' onClick={() => onSubmit(form, total, items)}>
+        <Button className="my-4" onClick={() => onSubmit(form, total)}>
           Save Post
         </Button>
-        <Link to='/' className='text-primary ml-4 hover:underline text-sm'>
+        <Link to="/" className="text-primary ml-4 hover:underline text-sm">
           Back to list
         </Link>
       </div>

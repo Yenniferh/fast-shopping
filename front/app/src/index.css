@@ -1,52 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.grid-container {
+  @apply grid h-auto w-full p-6 m-3 shadow-md rounded-md;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "header "
+    "details"
+    "remover";
 }
 
-.paginationItem {
-  background: #fff;
-  border: 2px solid #666;
-  padding: 10px 15px;
-  border-radius: 50%;
-  height: 45px;
-  width: 45px;
-  position: relative;
-  margin: 0 5px;
-  cursor: pointer;
+.grid-container > .item {
+  @apply w-full h-full;
 }
 
-.paginationItem span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.header {
+  @apply inline-flex flex-col;
+  grid-area: header;
 }
 
-.prev,
-.next {
-  background: #fff;
-  border: none;
-  padding: 10px;
-  color: blue;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-  margin: 0 10px;
-  cursor: pointer;
+.details {
+  @apply inline-flex flex-col;
+  grid-area: details;
 }
 
-.paginationItem.active {
-  border: 1px solid #888;
-  color: #888;
-  pointer-events: none;
+.remover {
+  @apply inline-flex flex-col;
+  grid-area: remover;
 }
 
-.prev.disabled,
-.next.disabled {
-  pointer-events: none;
-  box-shadow: none;
-  color: #999;
+@screen md {
+  .grid-container {
+    @apply gap-3;
+    grid-template-columns: 50% 40% 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: "header details remover";
+  }
+
+  .details {
+    @apply flex-row justify-between;
+  }
+
+  .remover {
+    @apply flex-row justify-center items-center;
+  }
 }

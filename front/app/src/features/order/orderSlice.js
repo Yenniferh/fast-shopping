@@ -1,32 +1,32 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { CreateUser, CreateOrder, AddOrderItem } from '../../Services/Api';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { CreateUser, CreateOrder, AddOrderItem } from "../../Services/Api";
 
 const initialState = {
   order_items: [],
-  status: 'idle',
+  status: "idle",
   error: null,
   id_order: 0,
   total: 0,
 };
 
-export const postUser = createAsyncThunk('order/postUser', async (user) => {
+export const postUser = createAsyncThunk("order/postUser", async (user) => {
   await CreateUser(user);
 });
 
-export const postOrder = createAsyncThunk('order/postOrder', async (order) => {
+export const postOrder = createAsyncThunk("order/postOrder", async (order) => {
   const res = await CreateOrder(order);
   return res.id;
 });
 
 export const postOrderItem = createAsyncThunk(
-  'order/postOrderItem',
+  "order/postOrderItem",
   async (item) => {
     await AddOrderItem(item);
   }
 );
 
 const orderSlice = createSlice({
-  name: 'order',
+  name: "order",
   initialState,
   reducers: {
     addOrderItem(state, action) {
@@ -36,8 +36,9 @@ const orderSlice = createSlice({
       );
       if (existingOrderItem) {
         existingOrderItem.quantity += 1;
-        existingOrderItem.subtotal =
-          existingOrderItem.price * existingOrderItem.quantity;
+        existingOrderItem.subtotal = (
+          existingOrderItem.price * existingOrderItem.quantity
+        ).toFixed(2);
       } else {
         state.order_items.push({
           ...action.payload,
@@ -57,11 +58,11 @@ const orderSlice = createSlice({
       const existingOrderItem = state.order_items.find(
         (item) => item.id_product === id_product
       );
-      if (stock <= quantity) {
+      state.error = null;
+      if (stock >= quantity) {
         existingOrderItem.quantity = quantity;
-        state.error.message = null;
       } else {
-        state.error.message = 'Not enough stock';
+        state.error = "Not enough stock";
       }
     },
     calculatesTotal(state, action) {
@@ -69,7 +70,7 @@ const orderSlice = createSlice({
       state.order_items.forEach((element) => {
         total += parseFloat(element.quantity) * parseFloat(element.price);
       });
-      state.total = total;
+      state.total = total.toFixed(2);
     },
     resetOrder(state, action) {
       state.order_items = [];
@@ -79,10 +80,10 @@ const orderSlice = createSlice({
   },
   extraReducers: {
     [postUser.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+      state.status = "succeeded";
     },
     [postOrder.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+      state.status = "succeeded";
       state.id_order = action.payload;
     },
   },
