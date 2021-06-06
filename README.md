@@ -11,6 +11,7 @@
 - [Screenshots](#screenshots)
   - [Desktop version](#desktop-version)
   - [Mobile version](#mobile-version)
+- [Demo](#demo)
 - [Additional comments](#additional-comments)
 
 ## How to run
@@ -73,8 +74,12 @@ Now the app is exposed at `http://localhost:3000/`
 ### Mobile version
 
 <code>
-  <img src=".github/FastShoppingMobile.jpeg" alt="Design"/>
+  <img src=".github/FastShoppingMobile.jpeg" height="100%" alt="Design"/>
 </code>
+
+## Demo
+
+- [Ver demo en  Google Drive](https://drive.google.com/file/d/15RrBcXr68oNM0M_nHnPoNP0LU54A3IsC/view?usp=drivesdk)
 
 ## Additional comments
 
