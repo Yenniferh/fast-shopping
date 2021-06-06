@@ -86,12 +86,15 @@ app.post("/orders", async (req, res) => {
       res.json({ status: "error", message: error.message });
     }
 
-    const lastQuery = "SELECT LAST_INSERT_ID()";
-    pool.query(lastQuery, (error, result) => {
+    const lastQuery =
+      "SELECT id_order FROM orders WHERE id_user = ? ORDER BY ordered_at, id_order DESC";
+    pool.query(lastQuery, data["id_user"], (error, result) => {
       if (error) {
         res.json({ status: "error", message: error.message });
+      } else if (!result) {
+        res.json({});
       }
-      res.json({ status: "ok", id: result[0]["LAST_INSERT_ID()"] });
+      res.json({ status: "ok", id: result[0]["id_order"] });
     });
   });
 });
