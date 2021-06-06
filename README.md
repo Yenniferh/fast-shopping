@@ -3,6 +3,7 @@
 ## Contents <!-- omit in toc -->
 
 - [How to run](#how-to-run)
+  - [Prerequisite](#prerequisite)
   - [Setup the db](#setup-the-db)
   - [Installing dependencies](#installing-dependencies)
   - [Configure env](#configure-env)
@@ -13,6 +14,10 @@
 - [Additional comments](#additional-comments)
 
 ## How to run
+
+### Prerequisite
+
+- Docker
 
 ### Setup the db
 
