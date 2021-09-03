@@ -79,7 +79,7 @@ Now the app is exposed at `http://localhost:3000/`
 
 ## Demo
 
-- [Ver demo en  Google Drive](https://drive.google.com/file/d/15RrBcXr68oNM0M_nHnPoNP0LU54A3IsC/view?usp=drivesdk)
+- [Demo hosted by Google Drive](https://drive.google.com/file/d/15RrBcXr68oNM0M_nHnPoNP0LU54A3IsC/view?usp=drivesdk)
 
 ## Additional comments
 
